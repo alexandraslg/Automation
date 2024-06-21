@@ -3,6 +3,7 @@ package utile;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
 
 public class ReportManager {
 
@@ -11,10 +12,12 @@ public class ReportManager {
     public static ExtentReports getInstance(){
 
         if(extentReports == null){
-            String reportName = "test-report.html";
+            String reportName = "target/test-report.html";
             ExtentSparkReporter sparkReporter = new ExtentSparkReporter(reportName);
             extentReports = new ExtentReports();
             extentReports.attachReporter(sparkReporter);
+            sparkReporter.config().setTheme(Theme.DARK);
+            sparkReporter.config().setDocumentTitle("My report");
         }
         return extentReports;
     }

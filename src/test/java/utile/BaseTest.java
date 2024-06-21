@@ -1,5 +1,6 @@
 package utile;
 
+import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
@@ -15,24 +16,34 @@ import org.testng.annotations.BeforeClass;
 
 import org.testng.annotations.BeforeSuite;
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
     public WebDriver driver;
     private ExtentTest extentTest;
     private ScreenshotUtils screenshotUtils;
+    private static ExtentReports extentReports;
 
     @BeforeClass
     public void setupClass(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+
         screenshotUtils = new ScreenshotUtils(driver);
+
+        extentReports = ReportManager.getInstance();
     }
 
     @AfterClass
     public void tearDown(){
         if (driver != null){
             driver.quit();
+        }
+
+        // Flush the report
+        if (extentReports != null) {
+            extentReports.flush();
         }
     }
 
