@@ -6,6 +6,7 @@ import pages.LoginPage;
 import pages.RegisterPage;
 import utile.BaseTest;
 
+
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
