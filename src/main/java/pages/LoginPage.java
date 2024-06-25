@@ -11,6 +11,7 @@ public class LoginPage {
     private By loginButton = By.xpath("//div//input[@id='submitButton']");
     private By registerTab = By.xpath("//body//a[contains(@href,'register')]");
     private By loginText = By.xpath("//h2[@class='loginPageID']");
+    private By forbiddenAccessText = By.xpath("//div[@id='errorForbiddenAccess']");
 
     public LoginPage(WebDriver driver){
         this.driver = driver;
@@ -36,6 +37,10 @@ public class LoginPage {
 
     public String getLoginText(){
         return driver.findElement(loginText).getText();
+    }
+
+    public String getForbiddenAccessText(){
+        return driver.findElement(forbiddenAccessText).getText();
     }
 
 }
