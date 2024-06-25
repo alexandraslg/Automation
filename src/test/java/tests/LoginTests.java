@@ -24,7 +24,7 @@ public class LoginTests extends BaseTest {
         String expectedForbiddenAccessText = "Access forbidden!";
 
         loginPage.setUserEmail("alexandra@example.com");
-        loginPage.setUserPassword("incorrectpassword");
+        loginPage.setUserPassword("incorrectPassword");
         loginPage.clickLoginButton();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
