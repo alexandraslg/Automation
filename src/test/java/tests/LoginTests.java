@@ -23,6 +23,7 @@ public class LoginTests extends BaseTest {
 
         String expectedForbiddenAccessText = "Access forbidden!";
 
+        //modificare
         loginPage.setUserEmail("alexandra@example.com");
         loginPage.setUserPassword("incorrectPassword");
         loginPage.clickLoginButton();
