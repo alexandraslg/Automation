@@ -9,6 +9,7 @@ public class SimpleTest extends BaseTest {
     public void firstTest(){
         initTest("Sample test");
 
+
         driver.get("http://apptest.go.ro:9999/login");
 
         String expectedText = "Login";
