@@ -16,5 +16,8 @@ public class DashboardPage {
         return driver.findElement(usernameDisplay).getText();
     }
 
+    public By getUsernameWebElement(){
+        return usernameDisplay;
+    }
 
 }

@@ -43,4 +43,8 @@ public class LoginPage {
         return driver.findElement(forbiddenAccessText).getText();
     }
 
+    public By getForbiddenAccessWebElement(){
+        return forbiddenAccessText;
+    }
+
 }
