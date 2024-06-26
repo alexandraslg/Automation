@@ -3,10 +3,7 @@ package tests;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
 import pages.LoginPage;
-import pages.RegisterPage;
 import utile.BaseTest;
-
-
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
@@ -24,8 +21,6 @@ public class LoginTests extends BaseTest {
 
         String expectedForbiddenAccessText = "Access forbidden!";
 
-
-        //modificare
         loginPage.setUserEmail("alexandra@example.com");
         loginPage.setUserPassword("incorrectPassword");
         loginPage.clickLoginButton();
