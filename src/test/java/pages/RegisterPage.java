@@ -2,6 +2,8 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import utile.ConfigLoader;
+
 
 public class RegisterPage {
 
@@ -16,6 +18,7 @@ public class RegisterPage {
     private By customerCheckBox = By.xpath("//div//input[@id = 'customer']");
     private By trainerCheckBox = By.xpath("//div//input[@id = 'trainer']");
     private By signUpButton = By.xpath("//div//input[@id = 'submit']");
+    private ConfigLoader configLoader;
 
     public RegisterPage(WebDriver driver){
         this.driver = driver;
@@ -60,6 +63,30 @@ public class RegisterPage {
 
     public String getSignUpText(){
         return driver.findElement(signUpText).getText();
+    }
+
+    public void registerUser(boolean isTrainer){
+
+        configLoader = new ConfigLoader("src/test/resources/properties/dataUser1.properties");
+        String firstName = configLoader.getProperty("firstName");
+        String lastName = configLoader.getProperty("lastName");
+        String phoneNumber = configLoader.getProperty("phoneNumber");
+        String email = configLoader.getProperty("email");
+        String password = configLoader.getProperty("password");
+        String city = configLoader.getProperty("city");
+
+        setFirstNameField(firstName);
+        setLastNameField(lastName);
+        setPhoneNumberField(phoneNumber);
+        setEmailField(email);
+        setPasswordField(password);
+        setCityField(city);
+        if(isTrainer){
+            clickOnTrainerCheckBox();
+        } else{
+            clickOnCustomerCheckBox();
+        }
+        clickSignUpButton();
     }
 
 }

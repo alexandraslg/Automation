@@ -14,11 +14,17 @@
             <class name="tests.RegisterUser"/>
         </classes>
     </test>
-    -->
+
 
     <test name="Login tests">
         <classes>
-            <class name="tests.LoginTests"/>
+            <class name="tests.LoginTrainer"/>
+        </classes>
+    </test>
+    -->
+    <test name="Training program">
+        <classes>
+            <class name="tests.TrainingProgram"/>
         </classes>
     </test>
 

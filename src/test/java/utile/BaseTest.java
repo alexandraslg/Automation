@@ -13,10 +13,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 
-
-import org.testng.annotations.BeforeSuite;
 import java.io.File;
-import java.util.concurrent.TimeUnit;
+
 
 public class BaseTest {
 
@@ -24,13 +22,16 @@ public class BaseTest {
     private ExtentTest extentTest;
     private ScreenshotUtils screenshotUtils;
     private static ExtentReports extentReports;
+    private ConfigLoader configLoader;
 
     @BeforeClass
     public void setupClass(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         screenshotUtils = new ScreenshotUtils(driver);
-        driver.get("http://apptest.go.ro:9999/login");
+        ConfigLoader configLoader = new ConfigLoader("src/test/resources/properties/url.properties");
+        String url = configLoader.getProperty("url");
+        driver.get(url);
         extentReports = ReportManager.getInstance();
     }
 
