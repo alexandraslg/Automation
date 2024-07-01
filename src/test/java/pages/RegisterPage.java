@@ -65,7 +65,7 @@ public class RegisterPage {
         return driver.findElement(signUpText).getText();
     }
 
-    public void registerUser(boolean isTrainer){
+    public LoginPage registerUser(boolean isTrainer){
 
         configLoader = new ConfigLoader("src/test/resources/properties/dataUser1.properties");
         String firstName = configLoader.getProperty("firstName");
@@ -86,7 +86,7 @@ public class RegisterPage {
         } else{
             clickOnCustomerCheckBox();
         }
-        clickSignUpButton();
+        return clickSignUpButton();
     }
 
 }
