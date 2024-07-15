@@ -67,7 +67,7 @@ public class RegisterPage {
 
     public LoginPage registerUser(boolean isTrainer){
 
-        configLoader = new ConfigLoader("src/test/resources/properties/dataUser1.properties");
+        configLoader = new ConfigLoader("src/test/resources/properties/dataUser2.properties");
         String firstName = configLoader.getProperty("firstName");
         String lastName = configLoader.getProperty("lastName");
         String phoneNumber = configLoader.getProperty("phoneNumber");

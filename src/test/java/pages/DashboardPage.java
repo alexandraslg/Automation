@@ -13,6 +13,7 @@ public class DashboardPage {
     private WebDriver driver;
     private By usernameDisplay = By.xpath("//a[@id='userNameDisplay']");
     private By trainingTab = By.xpath("//a[contains(text(),'Training')]");
+    //private By julyDay = By.xpath("")
     private Wait<WebDriver> wait;
 
     public DashboardPage(WebDriver driver){

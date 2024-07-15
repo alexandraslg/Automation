@@ -29,7 +29,7 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         screenshotUtils = new ScreenshotUtils(driver);
-        ConfigLoader configLoader = new ConfigLoader("src/test/resources/properties/url.properties");
+        configLoader = new ConfigLoader("src/test/resources/properties/url.properties");
         String url = configLoader.getProperty("url");
         driver.get(url);
         extentReports = ReportManager.getInstance();
