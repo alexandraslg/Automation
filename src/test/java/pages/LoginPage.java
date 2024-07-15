@@ -27,6 +27,8 @@ public class LoginPage {
     }
 
     public void setUserEmail(String userEmailText) {
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(userEmail));
         driver.findElement(userEmail).sendKeys(userEmailText);
     }
 
