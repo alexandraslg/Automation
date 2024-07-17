@@ -22,10 +22,17 @@
         </classes>
     </test>
     -->
-    <test name="Training program">
-        <classes>
-            <class name="tests.TrainingProgram"/>
-        </classes>
-    </test>
+<!--    <test name="Training program">-->
+<!--        <classes>-->
+<!--            <class name="tests.TrainingProgram"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+        <test name="Cucumber Calendar Test">
+            <classes>
+                <class name="runner.TestRunner"/>
+            </classes>
+        </test>
+
 
 </suite>

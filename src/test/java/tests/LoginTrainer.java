@@ -28,7 +28,7 @@ public class LoginTrainer extends BaseTest {
 
         if (loginPage.forbiddenAccessElementIsDisplayed()) {
             registerPage = loginPage.clickRegisterTab();
-            registerPage.registerUser(true);
+            //registerPage.registerUser(true);
 
             loginUser(email, password);
         }

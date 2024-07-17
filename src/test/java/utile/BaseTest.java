@@ -28,6 +28,7 @@ public class BaseTest {
     public void setupClass(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         screenshotUtils = new ScreenshotUtils(driver);
         configLoader = new ConfigLoader("src/test/resources/properties/url.properties");
         String url = configLoader.getProperty("url");
