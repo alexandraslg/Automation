@@ -65,14 +65,14 @@ public class RegisterPage {
         return driver.findElement(signUpText).getText();
     }
 
-    public LoginPage registerUser(boolean isTrainer){
+    public LoginPage registerUser(boolean isTrainer, String email, String password, String phoneNumber){
 
         configLoader = new ConfigLoader("src/test/resources/properties/dataUser2.properties");
         String firstName = configLoader.getProperty("firstName");
         String lastName = configLoader.getProperty("lastName");
-        String phoneNumber = configLoader.getProperty("phoneNumber");
-        String email = configLoader.getProperty("email");
-        String password = configLoader.getProperty("password");
+        //String phoneNumber = configLoader.getProperty("phoneNumber");
+        //String email = configLoader.getProperty("email");
+        //String password = configLoader.getProperty("password");
         String city = configLoader.getProperty("city");
 
         setFirstNameField(firstName);

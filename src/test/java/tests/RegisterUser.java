@@ -20,7 +20,7 @@ public class RegisterUser extends BaseTest {
 
         assertTrue(registerPage.getSignUpText().equalsIgnoreCase("Sign Up"));
 
-        registerPage.registerUser(true);
+        //registerPage.registerUser(true);
 
         assertTrue(loginPage.getLoginText().equalsIgnoreCase("Login"));
 

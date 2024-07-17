@@ -15,8 +15,6 @@ import static org.testng.Assert.assertEquals;
 public class CalendarAddEvent extends BaseTest {
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
-    private TrainingsPage trainingsPage;
-    private ConfigLoader configLoader;
     private RegisterPage registerPage;
 
     @BeforeTest
@@ -30,16 +28,19 @@ public class CalendarAddEvent extends BaseTest {
         initTest("Add event in calendar");
         loginPage = new LoginPage(driver);
         dashboardPage = new DashboardPage(driver);
-        trainingsPage = new TrainingsPage(driver);
         registerPage = new RegisterPage(driver);
         login();
 
+        ConfigLoader configLoaderDate = new ConfigLoader("src/test/resources/properties/dataUserCalendar.properties");
+        dashboardPage.clickSpecificDayOnCalendar(configLoaderDate.getProperty("date"));
+        dashboardPage.setEventTitle(configLoaderDate.getProperty("event"));
+        dashboardPage.clickOnCreateEventButton();
 
-
+        Assert.assertTrue(dashboardPage.isEventCreated(configLoaderDate.getProperty("event")));
     }
 
     private void login() {
-        configLoader = new ConfigLoader("src/test/resources/properties/dataUser2.properties");
+        ConfigLoader configLoader = new ConfigLoader("src/test/resources/properties/dataUser2.properties");
         String email = configLoader.getProperty("email");
         String password = configLoader.getProperty("password");
 
@@ -47,7 +48,7 @@ public class CalendarAddEvent extends BaseTest {
 
         if (loginPage.forbiddenAccessElementIsDisplayed()) {
             registerPage = loginPage.clickRegisterTab();
-            registerPage.registerUser(true);
+            registerPage.registerUser(true,null,null,null);
 
             loginUser(email, password);
         }

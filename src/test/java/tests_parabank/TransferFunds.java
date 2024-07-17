@@ -16,7 +16,7 @@ public class TransferFunds extends BaseTest {
     private TransferFundsPage transferFundsPage;
 
     @Test
-    public void testTransferFunds(){
+    public void testTransferFunds() {
         initTest("Transfer Funds");
 
         homePage = new HomePage(driver);
@@ -34,9 +34,6 @@ public class TransferFunds extends BaseTest {
         firstAccountDefaultBalance = firstAccountDefaultBalance.substring(1);
         secondAccountDefaultBalance = secondAccountDefaultBalance.substring(1);
 
-        System.out.println(firstAccountDefaultBalance);
-        System.out.println(secondAccountDefaultBalance);
-
         transferFundsPage = overviewPage.clickOnTransferFundsButton();
 
         ConfigLoader configLoaderFunds = new ConfigLoader("src/test/resources/properties/transferFunds.properties");
@@ -51,9 +48,9 @@ public class TransferFunds extends BaseTest {
         String toAccountOption = transferFundsPage.getToAccountOption();
         transferFundsPage.clickOnTransferButton();
 
-        //String expectedOutputMessage = "$" + String.format("%.2f",Double.parseDouble(amount)) + " has been transferred from account #" + fromAccountOption + " to account #" + toAccountOption;
+        String expectedOutputMessage = "$" + String.format("%.2f", Double.parseDouble(amount)) + " has been transferred from account #" + fromAccountOption + " to account #" + toAccountOption;
 
-        //assertEquals(transferFundsPage.getTransferCompleteMessage(), expectedOutputMessage, "Transfer funds was not successful.");
+        assertEquals(transferFundsPage.getTransferCompleteMessage(), expectedOutputMessage, "Transfer funds was not successful.");
 
         transferFundsPage.clickOnAccountsOverviewTab();
         String firstAccountAfterBalance = overviewPage.getFirstAccountBalance();
@@ -61,15 +58,8 @@ public class TransferFunds extends BaseTest {
         firstAccountAfterBalance = firstAccountAfterBalance.substring(1);
         secondAccountAfterBalance = secondAccountAfterBalance.substring(1);
 
-        System.out.println(firstAccountAfterBalance);
-        System.out.println(secondAccountAfterBalance);
-
-       assertEquals(Double.parseDouble(firstAccountAfterBalance), Double.parseDouble(firstAccountDefaultBalance)-Double.parseDouble(amount), "Transfer funds was not successful");
-       assertEquals(Double.parseDouble(secondAccountAfterBalance), Double.parseDouble(secondAccountDefaultBalance)+Double.parseDouble(amount), "Transfer funds was not successful");
-
-
-
-
+        assertEquals(Double.parseDouble(firstAccountAfterBalance), Double.parseDouble(firstAccountDefaultBalance) - Double.parseDouble(amount), "Transfer funds was not successful");
+        assertEquals(Double.parseDouble(secondAccountAfterBalance), Double.parseDouble(secondAccountDefaultBalance) + Double.parseDouble(amount), "Transfer funds was not successful");
 
 
     }

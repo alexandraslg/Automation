@@ -18,9 +18,14 @@ public class TrainingsPage {
     private By trainingTabTitle = By.xpath("//h2[contains(text(),'Training program')]");
     private By generateProgramButton = By.xpath("//div[@class='generate-program']");
     private By trainingProgramList = By.cssSelector(".cdk-drag.example-box");
-    private By dayProgram(String dayIndex){
+
+    private By dayProgram(String dayIndex) {
         return By.xpath("//div[@id='cdk-drop-list-" + dayIndex + "']");
     }
+    private By trainingProgramOnWeekDay(String dayIndex){
+        return By.xpath("//div[@id='cdk-drop-list-" + dayIndex + "']/div[@class='cdk-drag example-box']");
+    }
+
     private Wait<WebDriver> wait;
     private Actions builder;
 
@@ -35,19 +40,24 @@ public class TrainingsPage {
         return driver.findElement(trainingTabTitle).getText();
     }
 
-    public void clickOnGenerateProgramButton(){
+    public void clickOnGenerateProgramButton() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(generateProgramButton));
         driver.findElement(generateProgramButton).click();
     }
 
-    public WebElement dayOfWeek(String dayIndex){
+    public WebElement dayOfWeek(String dayIndex) {
         return driver.findElement(dayProgram(dayIndex));
     }
-    public List<WebElement> trainingPrograms(){
+
+    public List<WebElement> trainingPrograms() {
         return driver.findElements(trainingProgramList);
     }
 
-    public void dragAndDropTrainingProgram(String dayIndex, String trainingProgram){
+    public List<WebElement> trainingProgramsOnWeekDay(String dayIndex) {
+        return driver.findElements(trainingProgramOnWeekDay(dayIndex));
+    }
+
+    public void dragAndDropTrainingProgram(String dayIndex, String trainingProgram) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(trainingProgramList));
         Action dragAndDrop = builder.clickAndHold(getTrainingProgram(trainingProgram))
                 .moveToElement(dayOfWeek(dayIndex))
@@ -56,13 +66,20 @@ public class TrainingsPage {
         dragAndDrop.perform();
     }
 
-    private WebElement getTrainingProgram(String trainingProgram){
-        for (WebElement element : trainingPrograms()){
+    private WebElement getTrainingProgram(String trainingProgram) {
+        for (WebElement element : trainingPrograms()) {
             if (element.getText().equalsIgnoreCase(trainingProgram))
                 return element;
         }
         return null;
     }
 
+    public String getTrainingProgramOnWeekDay(String dayIndex, String trainingProgram) {
+        for (WebElement element : trainingProgramsOnWeekDay(dayIndex)) {
+            if (element.getText().equalsIgnoreCase(trainingProgram))
+                return element.getText();
+        }
+        return null;
 
+    }
 }

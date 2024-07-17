@@ -11,6 +11,7 @@ import utile.BaseTest;
 import utile.ConfigLoader;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 
 public class TrainingProgram extends BaseTest {
@@ -43,6 +44,8 @@ public class TrainingProgram extends BaseTest {
         String dayIndex = configLoader.getProperty("dayIndex");
         String trainingProgram = configLoader.getProperty("trainingProgram");
         trainingsPage.dragAndDropTrainingProgram(dayIndex, trainingProgram);
+
+        assertTrue(trainingsPage.getTrainingProgramOnWeekDay(configLoader.getProperty("dayIndex"),"legs").equalsIgnoreCase("legs"));
     }
 
     private void login() {
@@ -54,7 +57,7 @@ public class TrainingProgram extends BaseTest {
 
         if (loginPage.forbiddenAccessElementIsDisplayed()) {
             registerPage = loginPage.clickRegisterTab();
-            registerPage.registerUser(true);
+            //registerPage.registerUser(true);
 
             loginUser(email, password);
         }
